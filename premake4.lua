@@ -50,7 +50,8 @@ newplatform {
 		cc = "clang",
 		cxx = "clang++",
 		ar = "ar",
-		cppflags = "-MMD"
+		ldflags = "-stdlib=libc++ -L/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/lib",
+		cppflags = "-MMD -nostdinc++ -I/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/include/c++/v1 -I/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/include/x86_64-unknown-linux-gnu/c++/v1/"
 	}
 }
 
@@ -1575,7 +1576,7 @@ solution "eepp"
 			links { "ecode-macos-helper-static" }
 		end
 		if os.is_real("linux") then
-			links { "util", "stdc++fs" }
+			links { "util" }
 
 			if os_findlib("dw") then
 				print("Found dw")
