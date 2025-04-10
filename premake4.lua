@@ -50,8 +50,8 @@ newplatform {
 		cc = "clang",
 		cxx = "clang++",
 		ar = "ar",
-		ldflags = "-stdlib=libc++ -L/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/lib",
-		cppflags = "-MMD -nostdinc++ -I/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/include/c++/v1 -I/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/include/x86_64-unknown-linux-gnu/c++/v1/"
+		ldflags = "-Wl,--gc-sections -stdlib=libc++ -L/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/lib",
+		cppflags = "-fdata-sections -ffunction-sections -MMD -nostdinc++ -I/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/include/c++/v1 -I/home/panzerschrek/Projects/clang+llvm-15.0.6-x86_64-linux-gnu-ubuntu-18.04/include/x86_64-unknown-linux-gnu/c++/v1/"
 	}
 }
 
