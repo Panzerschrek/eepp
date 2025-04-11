@@ -604,8 +604,8 @@ void App::initPluginManager() {
 	mPluginManager->registerPlugin( LSPClientPlugin::Definition() );
 	mPluginManager->registerPlugin( XMLToolsPlugin::Definition() );
 	mPluginManager->registerPlugin( GitPlugin::Definition() );
-	mPluginManager->registerPlugin( AIAssistantPlugin::Definition() );
-	mPluginManager->registerPlugin( DiscordRPCplugin::Definition() );
+	// mPluginManager->registerPlugin( AIAssistantPlugin::Definition() );
+	// mPluginManager->registerPlugin( DiscordRPCplugin::Definition() );
 }
 
 std::pair<bool, std::string> App::generateConfigPath() {
