@@ -1373,32 +1373,7 @@ void AutoCompletePlugin::resetSignatureHelp() {
 }
 
 AutoCompletePlugin::SymbolsList AutoCompletePlugin::getDocumentSymbols( TextDocument* doc ) {
-	static constexpr auto MAX_LINE_LENGTH = EE_1KB * 10;
-	LuaPattern pattern( mSymbolPattern );
 	AutoCompletePlugin::SymbolsList symbols;
-	if ( doc->linesCount() == 0 || doc->isHuge() || mShuttingDown )
-		return symbols;
-	std::string current( getPartialSymbol( doc ) );
-	TextPosition end = doc->getSelection().end();
-	for ( Int64 i = 0; i < static_cast<Int64>( doc->linesCount() ); i++ ) {
-		const auto& line = doc->line( i );
-		if ( line.size() > MAX_LINE_LENGTH )
-			continue;
-		auto string = line.toUtf8();
-		for ( auto& match : pattern.gmatch( string ) ) {
-			std::string matchStr( match[0] );
-			// Ignore the symbol if is actually the current symbol being written
-			if ( matchStr.size() < 3 || ( end.line() == i && current == matchStr ) )
-				continue;
-			if ( std::none_of( symbols.begin(), symbols.end(),
-							   [matchStr]( const Suggestion& suggestion ) {
-								   return suggestion.text == matchStr;
-							   } ) )
-				symbols.push_back( std::move( matchStr ) );
-		}
-		if ( mShuttingDown )
-			break;
-	}
 	return symbols;
 }
 
